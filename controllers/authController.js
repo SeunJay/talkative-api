@@ -43,10 +43,6 @@ const login = asyncHandler(async (req, res) => {
 
   const existingUser = await User.findOne({ email });
 
-  // const match = existingUser.matchPassword(password);
-
-  // console.log(match);
-
   if (!existingUser || !await existingUser.matchPassword(password)) {
     res.status(400).json({ message: 'Invalid credentials' });
     throw new Error('User already exists');
