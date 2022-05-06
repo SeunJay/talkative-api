@@ -13,6 +13,7 @@ const userSchema = new mongoose.Schema(
     email: {
       type: String,
       required: true,
+      unique: true,
       trim: true,
     },
 
@@ -23,7 +24,6 @@ const userSchema = new mongoose.Schema(
 
     pic: {
       type: "String",
-      required: true,
       default:
         'https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg',
     },
