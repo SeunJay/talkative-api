@@ -4,6 +4,7 @@ require('colors');
 const connectDB = require('./config/db');
 
 const userRoutes = require('./routes/userRoutes');
+const { notFound, errorHandler } = require('./middlewares/errrorMiddleware');
 
 const app = express();
 
@@ -18,6 +19,9 @@ app.get('/', (_, res) => {
 });
 
 app.use('/api/auth', userRoutes);
+
+app.use(notFound);
+app.use(errorHandler);
 
 const port = process.env.PORT || 4000;
 
