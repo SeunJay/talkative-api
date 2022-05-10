@@ -49,8 +49,10 @@ const login = asyncHandler(async (req, res) => {
   }
 
   return res.status(200).json({
+    _id: existingUser._id,
     name: existingUser.name,
     email: existingUser.email,
+    isAdmin: existingUser.isAdmin,
     pic: existingUser.pic,
     token: generateToken(existingUser._id),
   });

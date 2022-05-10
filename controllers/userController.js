@@ -11,7 +11,9 @@ const allUsers = asyncHandler(async (req, res) => {
       }
     : {};
 
-  const users = await User.find(keyword).find({ _id: { $ne: req.user._id } }).select('-password');
+  const users = await User.find(keyword)
+    .find({ _id: { $ne: req.user._id } })
+    .select('-password');
   res.send(users);
 });
 
