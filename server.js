@@ -52,8 +52,20 @@ io.on('connection', (socket) => {
     console.log('user joined room ', roomId);
   });
 
-  socket.on('typing', (room) => socket.in(room).emit('typing'));
-  socket.on('stop-typing', (room) => socket.in(room).emit('stop-typing'));
+  // const greetings = 'Hello from server!';
+
+  // socket.on('greeting-request', (roomId) => {
+  //   console.log('greeting request from ', roomId);
+  //   socket.in(roomId).emit('greetings', greetings);
+  // });
+
+  // socket.emit('greetings', greetings);
+
+  socket.on('typing', (roomId) => {
+    console.log('typing in ', roomId)
+    io.to(roomId).emit('typing')
+  });
+  socket.on('stop-typing', (roomId) => socket.in(roomId).emit('stop-typing'));
 
   socket.on('new-message', (newMessageReceived) => {
     const chat = newMessageReceived.chat;
